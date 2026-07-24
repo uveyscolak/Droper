@@ -11,3 +11,6 @@ DerivedData/
 /.claude/
 /.vscode/
 /brain/
+
+# Üretilen dağıtım imajı — repoya değil, GitHub Release'e gider
+/dist/*.dmg

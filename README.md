@@ -8,38 +8,42 @@ bırakırsınız. Varsayılan davranış **taşıma**dır (ayarlardan kopyalamay
 ## Gereksinimler
 
 - macOS 13 veya üzeri (Apple Silicon veya Intel)
-- Xcode gerekmez; **Command Line Tools** yeterlidir: `xcode-select --install`
+- Xcode gerekmez; kurulum script'i Command Line Tools'u gerekirse kendi kurar.
 
-## Kurulum
+## Hızlı kurulum (önerilen)
+
+Terminal'i açın (Uygulamalar → İzlenceler → Terminal), aşağıdaki tek satırı
+yapıştırıp Enter'a basın:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/uveyscolak/Droper/main/scripts/install.sh | bash
+```
+
+Script her şeyi otomatik yapar: geliştirici araçlarını kontrol eder (yoksa
+Apple'ın kurulum penceresini açar), Droper'ı indirir, derler,
+`/Applications/Droper.app` olarak kurar, başlatır ve Erişilebilirlik
+ayarlarını açar. İlk kurulum makinenize göre birkaç dakika sürer.
+
+> **Terminal'e hiç girmek istemeyen biri için:** [Droper Kur.command](dist/Droper%20Kur.command)
+> dosyasını indirip çift tıklamaları yeterli. macOS "geliştirici doğrulanamadı"
+> derse dosyaya **sağ tık → Aç** deyip onaylasınlar (bu uyarı, dosya internetten
+> indirildiği için çıkar; bir kez onaylanır).
+
+## Elle kurulum
+
+Script çalıştırmak yerine adımları kendiniz yapmak isterseniz:
 
 ```bash
 git clone https://github.com/uveyscolak/Droper.git
 cd Droper
 swift build -c release
-```
-
-Derlenen binary: `.build/release/Droper`
-
-### Önerilen: Droper.app paketi oluştur
-
-Uygulama olarak çalıştırmak (ve Accessibility iznini uygulamaya vermek) için:
-
-```bash
 ./scripts/make-app.sh
 open /Applications/Droper.app
 ```
 
-Script, release binary'sini `/Applications/Droper.app` paketine sarar
-(Dock'ta görünmeyen menü çubuğu uygulaması olarak).
-
-### Alternatif: doğrudan binary çalıştır
-
-```bash
-.build/release/Droper
-```
-
-Bu durumda Accessibility izni, uygulamayı başlattığınız uygulamaya
-(ör. Terminal) verilmelidir.
+Alternatif olarak `.app` paketi yapmadan doğrudan binary'yi çalıştırabilirsiniz
+(`.build/release/Droper`); bu durumda Accessibility izni, uygulamayı
+başlattığınız uygulamaya (ör. Terminal) verilir.
 
 ## Accessibility izni (zorunlu)
 

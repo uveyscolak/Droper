@@ -110,7 +110,10 @@ fi
 # --- 4) Derle ---------------------------------------------------------------
 
 adim "Derleniyor"
-bilgi "Bu adım 1-3 dakika sürebilir (ilk derlemede test kütüphanesi de indirilir)."
+bilgi "Bu adım 1-3 dakika sürebilir."
+
+# Dağıtım modu: test hedefi/bağımlılığı tanımlanmaz → hiçbir paket indirilmez.
+export DROPER_DIST=1
 
 if ! swift build -c release > "$WORK_DIR/build.log" 2>&1; then
     printf "\n%s Derleme çıktısının son satırları:%s\n" "$DIM" "$RESET" >&2

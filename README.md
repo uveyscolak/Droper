@@ -12,7 +12,8 @@ bırakırsınız. Varsayılan davranış **taşıma**dır (ayarlardan kopyalamay
 
 ## Kurulum (önerilen: çift tıkla)
 
-**Droper-Kurulum.dmg** dosyasını indirin ve şu üç adımı yapın:
+**[Droper-Kurulum.dmg'yi indirin](https://github.com/uveyscolak/Droper/releases/latest/download/Droper-Kurulum.dmg)**
+ve şu üç adımı yapın:
 
 1. `.dmg` dosyasına çift tıklayın — bir pencere açılır.
 2. İçindeki **Droper Kur.command** dosyasına **sağ tıklayıp "Aç"** deyin,
@@ -22,8 +23,8 @@ bırakırsınız. Varsayılan davranış **taşıma**dır (ayarlardan kopyalamay
    `/Applications`'a kurulur, başlar, izin ekranı açılır ve Terminal
    penceresi kendiliğinden kapanır.
 
-`.dmg` kaynağı kendi içinde taşır — kurulum sırasında ayrıca internetten
-indirme yapmaz (geliştirici araçları eksikse yalnızca onları indirir).
+`.dmg` kaynağı kendi içinde taşır ve kurulum hiçbir paket indirmez —
+internet yalnızca geliştirici araçları eksikse (onların kurulumu için) gerekir.
 
 ### Alternatif: tek satır (Terminal)
 

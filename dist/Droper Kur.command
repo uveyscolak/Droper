@@ -13,14 +13,18 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 clear
 
 # --- Terminal penceresini sonunda otomatik kapat --------------------------
-# Bu script'in TTY'sini baştan yakalarız; kurulum sonunda kaç pencere/sekme
-# o TTY'de çalışıyorsa onu kapatırız. Böylece kurulum bitince Sistem Ayarları
-# öne gelse bile (Terminal artık "frontmost" olmasa da) doğru pencere kapanır.
+# Bu script'in TTY'sini baştan yakalarız; kapanış, ARKA PLANDA ve script
+# ÇIKTIKTAN SONRA yapılır. Script çalışırken kapatmaya kalkarsak Terminal
+# "çalışan işlemler sonlandırılsın mı?" diye sorar — arka plan + gecikme ile
+# pencere [İşlem tamamlandı] durumuna geçer ve sessizce kapanır. TTY
+# eşleştirmesi sayesinde Sistem Ayarları öne gelse bile doğru pencere bulunur.
 BU_TTY="$(/usr/bin/tty 2>/dev/null | sed 's|/dev/||')"
 
-pencereyi_kapat() {
+pencereyi_sonra_kapat() {
     [ -n "$BU_TTY" ] || return 0
-    /usr/bin/osascript >/dev/null 2>&1 <<APPLESCRIPT || true
+    (
+        sleep 2
+        /usr/bin/osascript <<APPLESCRIPT
 tell application "Terminal"
     repeat with p in windows
         try
@@ -35,6 +39,8 @@ tell application "Terminal"
     if (count of windows) = 0 then quit
 end tell
 APPLESCRIPT
+    ) >/dev/null 2>&1 &
+    disown 2>/dev/null || true
 }
 
 # --- Kaynağı bul: önce .dmg içindeki gömülü kaynak, yoksa GitHub -----------
@@ -62,7 +68,10 @@ if [ -z "$KAYNAK_DIR" ] || [ ! -d "$KAYNAK_DIR" ]; then
         bash "$TMP_SCRIPT"
         DURUM=$?
         rm -f "$TMP_SCRIPT"
-        [ "$DURUM" -eq 0 ] && pencereyi_kapat
+        if [ "$DURUM" -eq 0 ]; then
+            printf "\n  Bu pencere birazdan kendiliğinden kapanacak…\n"
+            pencereyi_sonra_kapat
+        fi
         exit $DURUM
     fi
     printf "\n  \033[31m✗\033[0m Kaynak bulunamadı ve indirilemedi.\n"
@@ -79,8 +88,7 @@ DURUM=$?
 
 if [ "$DURUM" -eq 0 ]; then
     printf "\n  Bu pencere birazdan kendiliğinden kapanacak…\n"
-    sleep 3
-    pencereyi_kapat
+    pencereyi_sonra_kapat
 else
     printf "\n  Kurulum tamamlanamadı. Bu pencereyi kapatabilirsiniz.\n"
 fi

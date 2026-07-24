@@ -21,9 +21,11 @@ trap temizle EXIT
 
 echo "▸ Kaynak paketleniyor (kişisel dosyalar hariç)…"
 # Gömülü kaynak: sadece derleme için gerekenler. brain/, .claude/, .git yok.
+# Package.resolved da yok: kurulum DROPER_DIST=1 ile bağımlılıksız derler,
+# pin dosyası yalnızca geliştirme (swift test) içindir.
 SRC_STAGE="$STAGE/Droper"
 mkdir -p "$SRC_STAGE"
-for item in Package.swift Package.resolved Sources Tests scripts README.md .gitignore; do
+for item in Package.swift Sources Tests scripts README.md .gitignore; do
     [ -e "$ROOT/$item" ] && cp -R "$ROOT/$item" "$SRC_STAGE/"
 done
 # Gömülü kaynakta make-dmg gereksiz; çıkar.

@@ -10,24 +10,30 @@ bırakırsınız. Varsayılan davranış **taşıma**dır (ayarlardan kopyalamay
 - macOS 13 veya üzeri (Apple Silicon veya Intel)
 - Xcode gerekmez; kurulum script'i Command Line Tools'u gerekirse kendi kurar.
 
-## Hızlı kurulum (önerilen)
+## Kurulum (önerilen: çift tıkla)
 
-Terminal'i açın (Uygulamalar → İzlenceler → Terminal), aşağıdaki tek satırı
-yapıştırıp Enter'a basın:
+**Droper-Kurulum.dmg** dosyasını indirin ve şu üç adımı yapın:
+
+1. `.dmg` dosyasına çift tıklayın — bir pencere açılır.
+2. İçindeki **Droper Kur.command** dosyasına **sağ tıklayıp "Aç"** deyin,
+   çıkan uyarıda tekrar **"Aç"**a basın. (İlk açılışta sağ tık gerekli;
+   düz çift tık macOS tarafından engellenir. Bir kez yapılır.)
+3. Gerisi otomatik: gerekli araçlar kurulur, Droper derlenip
+   `/Applications`'a kurulur, başlar, izin ekranı açılır ve Terminal
+   penceresi kendiliğinden kapanır.
+
+`.dmg` kaynağı kendi içinde taşır — kurulum sırasında ayrıca internetten
+indirme yapmaz (geliştirici araçları eksikse yalnızca onları indirir).
+
+### Alternatif: tek satır (Terminal)
+
+Terminal kullanmaya çekinmiyorsanız, hiç dosya indirmeden:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/uveyscolak/Droper/main/scripts/install.sh | bash
 ```
 
-Script her şeyi otomatik yapar: geliştirici araçlarını kontrol eder (yoksa
-Apple'ın kurulum penceresini açar), Droper'ı indirir, derler,
-`/Applications/Droper.app` olarak kurar, başlatır ve Erişilebilirlik
-ayarlarını açar. İlk kurulum makinenize göre birkaç dakika sürer.
-
-> **Terminal'e hiç girmek istemeyen biri için:** [Droper Kur.command](dist/Droper%20Kur.command)
-> dosyasını indirip çift tıklamaları yeterli. macOS "geliştirici doğrulanamadı"
-> derse dosyaya **sağ tık → Aç** deyip onaylasınlar (bu uyarı, dosya internetten
-> indirildiği için çıkar; bir kez onaylanır).
+Bu yolda macOS güvenlik uyarısı çıkmaz (dosya indirilmez).
 
 ## Elle kurulum
 

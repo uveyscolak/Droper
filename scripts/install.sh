@@ -87,18 +87,25 @@ fi
 SWIFT_VERSION=$(swift --version 2>/dev/null | head -1 | sed 's/.*Swift version \([0-9.]*\).*/\1/')
 bilgi "Swift $SWIFT_VERSION"
 
-# --- 3) Kaynağı indir -------------------------------------------------------
+# --- 3) Kaynağı hazırla -----------------------------------------------------
+# Kaynak iki yoldan gelebilir:
+#  a) DROPER_KAYNAK_DIR ayarlıysa (.dmg içindeki gömülü kaynak) — indirme yok.
+#  b) Değilse GitHub'dan klonlanır (curl | bash yolu).
 
-adim "Droper indiriliyor"
-
-WORK_DIR=$(mktemp -d /tmp/droper-kurulum.XXXXXX) || hata "Geçici klasör oluşturulamadı."
-
-if ! git clone --depth 1 "$REPO_URL" "$WORK_DIR/Droper" >/dev/null 2>&1; then
-    hata "Kaynak indirilemedi. İnternet bağlantınızı kontrol edin."
+if [ -n "${DROPER_KAYNAK_DIR:-}" ] && [ -d "$DROPER_KAYNAK_DIR" ]; then
+    adim "Droper hazırlanıyor"
+    cd "$DROPER_KAYNAK_DIR" || hata "Kaynak klasörüne girilemedi."
+    WORK_DIR=$(mktemp -d /tmp/droper-log.XXXXXX)
+    tamam "Kaynak pakete gömülü — indirmeye gerek yok"
+else
+    adim "Droper indiriliyor"
+    WORK_DIR=$(mktemp -d /tmp/droper-kurulum.XXXXXX) || hata "Geçici klasör oluşturulamadı."
+    if ! git clone --depth 1 "$REPO_URL" "$WORK_DIR/Droper" >/dev/null 2>&1; then
+        hata "Kaynak indirilemedi. İnternet bağlantınızı kontrol edin."
+    fi
+    tamam "Kaynak indirildi"
+    cd "$WORK_DIR/Droper" || hata "Kaynak klasörüne girilemedi."
 fi
-tamam "Kaynak indirildi"
-
-cd "$WORK_DIR/Droper" || hata "Kaynak klasörüne girilemedi."
 
 # --- 4) Derle ---------------------------------------------------------------
 

@@ -2,8 +2,8 @@
 # Dağıtılabilir Droper-Kurulum.dmg üretir.
 #
 # .dmg içinde: "Droper Kur.command" (çift tıklanır), pakete gömülü kaynak
-# (Droper-kaynak.tar.gz — internet gerektirmez) ve görsel "İLK KEZ: sağ tık → Aç"
-# talimatı. Kullanım: ./scripts/make-dmg.sh
+# (Droper-kaynak.tar.gz — internet gerektirmez) ve macOS 15+ Gatekeeper akışını
+# anlatan görsel talimat. Kullanım: ./scripts/make-dmg.sh
 
 set -euo pipefail
 
@@ -48,27 +48,43 @@ cat > "$DMG_ROOT/① BURADAN BAŞLA — OKU.txt" <<'OKU'
 │                  DROPER KURULUMU                        │
 ╰─────────────────────────────────────────────────────────╯
 
-  KURULUM İÇİN TEK ADIM:
+  3 adım, yaklaşık 1 dakika. 2. adımdaki uyarı BEKLENEN bir
+  şeydir, bir hata değil: Droper imzasız olduğu için macOS
+  bir kereye mahsus izin ister.
 
-  1. "Droper Kur.command" dosyasına SAĞ TIKLAYIN
-  2. Açılan menüden "Aç" seçin
-  3. Çıkan uyarıda tekrar "Aç" düğmesine basın
+  ─────────────────────────────────────────────────────────
 
-  (İlk açılışta bu sağ-tık gerekli, çünkü dosya internetten
-   geldi. Bir kez yapılır. Düz çift tıklarsanız macOS engeller.)
+  1. "Droper Kur.command" dosyasına ÇİFT TIKLAYIN.
 
-  Sonrası tamamen otomatik:
+  2. "...açılamadı, Apple kötü amaçlı yazılım içerip
+     içermediğini doğrulayamadı" uyarısı çıkacak.
+
+     ⚠ "Çöp Kutusuna Taşı" demeyin! "İptal"e basın.
+
+  3. Sistem Ayarları > Gizlilik ve Güvenlik'i açın. Aşağı
+     kaydırıp GÜVENLİK bölümüne gelin. Orada "Droper Kur.command
+     engellendi" satırını göreceksiniz; yanındaki düğmeye
+     ("Yine de Aç" ya da "İzin Ver") basıp Mac parolanızı girin.
+
+  ─────────────────────────────────────────────────────────
+
+  Hepsi bu. Terminal kendiliğinden açılır ve gerisi otomatiktir:
     • Gerekli araçlar kontrol edilir (yoksa kurulur)
-    • Droper derlenir ve /Applications'a kurulur
+    • Droper derlenip /Applications'a kurulur
     • Uygulama başlar, izin ekranı açılır
     • Terminal penceresi kendiliğinden kapanır
 
-  SON ADIM (ekranda anlatılacak):
+  SON ADIM (ekranda da anlatılacak):
   Sistem Ayarları > Gizlilik ve Güvenlik > Erişilebilirlik
   listesinden Droper'ı açın. Bu izin, farenizi sürüklediğinizde
   rafın açılabilmesi için gerekli.
 
   ─────────────────────────────────────────────────────────
+  TERMINAL BİLENLER İÇİN: yukarıdaki 3 adım yerine Terminal'e
+  şu tek satırı yapıştırmak yeter, hiçbir uyarı çıkmaz:
+
+    bash "/Volumes/Droper Kurulum/Droper Kur.command"
+
   Sorun olursa: https://github.com/uveyscolak/Droper
 OKU
 
@@ -86,5 +102,5 @@ echo ""
 echo "✓ Hazır: $OUT_DMG ($SIZE)"
 echo ""
 echo "  Dağıtım: bu .dmg dosyasını WhatsApp/e-posta/Drive ile gönderin."
-echo "  Karşı taraf: .dmg'ye çift tıklar → içindeki 'Droper Kur.command'a"
-echo "  sağ tık → Aç. Gerisi otomatik."
+echo "  Karşı taraf: .dmg'ye çift tıklar → 'Droper Kur.command'a çift tıklar →"
+echo "  uyarıda İptal → Sistem Ayarları > Gizlilik ve Güvenlik > Yine de Aç."

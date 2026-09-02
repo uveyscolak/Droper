@@ -87,7 +87,9 @@ Droper, global fare sürükleme olaylarını izlemek için **Erişilebilirlik** 
 1. Uygulamayı ilk kez başlatın — sistem izin penceresi açılır.
 2. **Sistem Ayarları → Gizlilik ve Güvenlik → Erişilebilirlik** bölümüne gidin.
 3. Listede **Droper**'ı (doğrudan binary çalıştırdıysanız **Terminal**'i) bulup açın.
-4. Uygulamayı kapatıp yeniden başlatın.
+
+İzni verdikten sonra Droper birkaç saniye içinde kendiliğinden çalışmaya başlar —
+yeniden başlatmanıza gerek yok.
 
 ## Kullanım
 

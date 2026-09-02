@@ -166,7 +166,8 @@ printf "
     2. Yanındaki anahtarı %saçın%s
     3. Sorulursa şifrenizi girin
 
-  İzni verdikten sonra Droper'ı menü çubuğundan çıkıp yeniden açın.
+  İzni verdikten sonra Droper birkaç saniye içinde kendiliğinden çalışmaya
+  başlar — yeniden açmanıza gerek yok.
 " "$BOLD" "$RESET" "$BOLD" "$RESET" "$BOLD" "$RESET"
 
 sleep 3

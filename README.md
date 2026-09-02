@@ -21,22 +21,6 @@ curl -fsSL https://raw.githubusercontent.com/uveyscolak/Droper/main/scripts/inst
 Hiçbir dosya indirmezsiniz, hiçbir uyarı çıkmaz. Gerekli araçlar kontrol edilir,
 Droper derlenip `/Applications`'a kurulur, başlar, izin ekranı açılır.
 
-## Elle kurulum
-
-Script çalıştırmak yerine adımları kendiniz yapmak isterseniz:
-
-```bash
-git clone https://github.com/uveyscolak/Droper.git
-cd Droper
-swift build -c release
-./scripts/make-app.sh
-open /Applications/Droper.app
-```
-
-Alternatif olarak `.app` paketi yapmadan doğrudan binary'yi çalıştırabilirsiniz
-(`.build/release/Droper`); bu durumda Accessibility izni, uygulamayı
-başlattığınız uygulamaya (ör. Terminal) verilir.
-
 ## Accessibility izni (zorunlu)
 
 Droper, global fare sürükleme olaylarını izlemek için **Erişilebilirlik** izni ister.
@@ -44,7 +28,7 @@ Droper, global fare sürükleme olaylarını izlemek için **Erişilebilirlik** 
 
 1. Uygulamayı ilk kez başlatın — sistem izin penceresi açılır.
 2. **Sistem Ayarları → Gizlilik ve Güvenlik → Erişilebilirlik** bölümüne gidin.
-3. Listede **Droper**'ı (doğrudan binary çalıştırdıysanız **Terminal**'i) bulup açın.
+3. Listede **Droper**'ı bulup açın.
 
 İzni verdikten sonra Droper birkaç saniye içinde kendiliğinden çalışmaya başlar —
 yeniden başlatmanıza gerek yok.

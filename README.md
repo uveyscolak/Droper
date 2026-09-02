@@ -10,58 +10,16 @@ bırakırsınız. Varsayılan davranış **taşıma**dır (ayarlardan kopyalamay
 - macOS 13 veya üzeri (Apple Silicon veya Intel)
 - Xcode gerekmez; kurulum script'i Command Line Tools'u gerekirse kendi kurar.
 
-## Kurulum (önerilen: çift tıkla)
+## Kurulum
 
-**[Droper-Kurulum.dmg'yi indirin](https://github.com/uveyscolak/Droper/releases/latest/download/Droper-Kurulum.dmg)**
-ve şu üç adımı yapın:
-
-1. `.dmg` dosyasına çift tıklayın, sonra içindeki **Droper Kur.command**
-   dosyasına da çift tıklayın.
-2. **"...açılamadı, Apple doğrulayamadı"** uyarısı çıkacak. Bu beklenen bir
-   şeydir, hata değil — Droper imzasız olduğu için macOS bir kereye mahsus
-   izin ister. **"Çöp Kutusuna Taşı" demeyin, "İptal"e basın.**
-3. **Sistem Ayarları → Gizlilik ve Güvenlik**'i açın, aşağı kaydırıp
-   **Güvenlik** bölümüne gelin. Orada *"Droper Kur.command engellendi"*
-   satırını göreceksiniz; yanındaki **"Yine de Aç"** (bazı sürümlerde
-   "İzin Ver") düğmesine basıp Mac parolanızı girin.
-
-Hepsi bu. Terminal kendiliğinden açılır, gerekli araçlar kontrol edilir,
-Droper derlenip `/Applications`'a kurulur, başlar, izin ekranı açılır ve
-Terminal penceresi kendiliğinden kapanır.
-
-`.dmg` kaynağı kendi içinde taşır ve kurulum hiçbir paket indirmez —
-internet yalnızca geliştirici araçları eksikse (onların kurulumu için) gerekir.
-
-> **Neden bu ek adım var?** macOS 15 (Sequoia) ile birlikte Apple, imzasız ve
-> internetten indirilen dosyalar için eski "sağ tık → Aç" kısayolunu kaldırdı.
-> Artık tek onay yolu Sistem Ayarları'ndaki bu düğme. Uygulamanın imzalanması
-> (Apple Developer üyeliği, 99$/yıl) dışında bunu atlamanın yolu yok. Bir kez
-> yapılır, sonraki açılışlarda bir daha sorulmaz.
-
-### Alternatif 1: Terminal'e tek satır (uyarı hiç çıkmaz)
-
-Hiçbir dosya indirmeden, doğrudan kaynaktan kurulum:
+Terminal'i açın, şunu yapıştırıp Enter'a basın, ~3 dakika bekleyin:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/uveyscolak/Droper/main/scripts/install.sh | bash
 ```
 
-`.dmg`'yi zaten indirdiyseniz, onu bağlayıp (çift tıklayıp) şunu da
-kullanabilirsiniz — indirilmiş kaynağı kullanır, internet gerekmez:
-
-```bash
-bash "/Volumes/Droper Kurulum/Droper Kur.command"
-```
-
-Terminal'den çalıştırma Gatekeeper denetimine takılmaz, bu yüzden yukarıdaki
-2. ve 3. adımlara hiç gerek kalmaz.
-
-### Alternatif 2: senkron klasörle paylaşım
-
-Karantina damgasını dosyaya *indirme yöntemi* koyar. `.dmg`'yi tarayıcıyla
-indirmek yerine iCloud Drive / Dropbox gibi bir senkron klasörden alırsanız
-dosya çoğu zaman damgalanmaz ve çift tıklama hiçbir uyarı olmadan çalışır.
-Birine Droper göndereceksiniz, paylaşılan klasör en pürüzsüz yoldur.
+Hiçbir dosya indirmezsiniz, hiçbir uyarı çıkmaz. Gerekli araçlar kontrol edilir,
+Droper derlenip `/Applications`'a kurulur, başlar, izin ekranı açılır.
 
 ## Elle kurulum
 
